@@ -14,7 +14,13 @@ const incrementApi = () =>
 
 export const fetchCounter = createAsyncThunk('fetch', fetchApi);
 
-export const incrementCounter = createAsyncThunk('increment', incrementApi);
+// Use promise chaining to ensure ordering is correct even with latency.
+let p: Promise<any> = Promise.resolve(null);
+
+export const incrementCounter = createAsyncThunk(
+  'increment',
+  () => (p = p.then(() => incrementApi()))
+);
 
 export interface CounterState {
   value: null | number;

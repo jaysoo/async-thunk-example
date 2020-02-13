@@ -39,8 +39,8 @@ const App = () => {
       </p>
       <button onClick={() => dispatch(incrementCounter())}>Increment</button>
       <p>
-        <strong>Note:</strong> When you click the increment button multiple
-        times the responses may resolve out of order due to latency.
+        <strong>Note:</strong> By chaining promises the responses will always be
+        in correct order even if you spam the increment button.
       </p>
     </>
   );
